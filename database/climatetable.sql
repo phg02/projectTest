@@ -26,12 +26,14 @@ CREATE TABLE Population(
 -- Create World Temperature table
 CREATE TABLE WorldTemperature(
     World_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    country_code      VARCHAR(3) NOT NULL,
     AVG_temp         DECIMAL(5,2),
     MAX_temp         DECIMAL(5,2),
     MIN_temp         DECIMAL(5,2),
     L_O_AVG_temp     DECIMAL(5,2),
     L_O_MIN_temp    DECIMAL(5,2),
-    L_O_MAX_temp    DECIMAL(5,2)
+    L_O_MAX_temp    DECIMAL(5,2),
+    FOREIGN KEY (country_code) REFERENCES Country(country_code)
 );
 
 -- Create Country temperature table
@@ -49,7 +51,7 @@ CREATE TABLE CountryTemperature(
 CREATE TABLE StateTemperature(
     state_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     country_code     VARCHAR(3) NOT NULL,
-    state_code      VARCHAR(3) NOT NULL,
+    state_name      VARCHAR(3) NOT NULL,
     year              INTEGER NOT NULL,
     AVG_temp              DECIMAL(5,2),
     MIN_temp              DECIMAL(5,2),
