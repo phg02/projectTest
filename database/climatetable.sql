@@ -54,7 +54,7 @@ CREATE TABLE StateTemperature(
     AVG_temp              DECIMAL(5,2),
     MIN_temp              DECIMAL(5,2),
     MAX_temp              DECIMAL(5,2),
-    FOREIGN KEY (country_code) REFERENCES Country(country_code)
+    FOREIGN KEY (country_code) REFERENCES CountryTemperature(country_code)
 );
 
 -- Create City temperature table
@@ -66,5 +66,5 @@ CREATE TABLE CityTemperature(
     AVG_temp              DECIMAL(5,2),
     MIN_temp              DECIMAL(5,2),
     MAX_temp              DECIMAL(5,2),
-    FOREIGN KEY (country_code) REFERENCES Country(country_code)
+    FOREIGN KEY (country_code) REFERENCES CountryTemperature(country_code)
 ); 
