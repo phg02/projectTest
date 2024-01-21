@@ -1,3 +1,4 @@
+-- Create SQL table for Temperature & Population Database
 PRAGMA foreign_keys = OFF;
 drop table if exists CountryTemperature;
 drop table if exists CityTemperature;
@@ -7,56 +8,63 @@ drop table if exists Country;
 drop table if exists WorldTemperature;
 PRAGMA foreign_keys = ON;
 
+-- Create Country table
 CREATE TABLE Country(
     country_code      VARCHAR(3) PRIMARY KEY,
-    country_name      VARCHAR(100) NOT NULL,
+    country_name      VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE Population{
+-- Create Population table
+CREATE TABLE Population(
     pop_id            INTEGER PRIMARY KEY AUTOINCREMENT,
     country_code      VARCHAR(3) NOT NULL,
     year              INTEGER NOT NULL,
     pop_num           INTEGER,
     FOREIGN KEY (country_code) REFERENCES Country(country_code)
-};
+);
 
-CREATE TABLE WorldTemperature{
+-- Create World Temperature table
+CREATE TABLE WorldTemperature(
     World_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     AVG_temp         DECIMAL(5,2),
     MAX_temp         DECIMAL(5,2),
     MIN_temp         DECIMAL(5,2),
     L_O_AVG_temp     DECIMAL(5,2),
     L_O_MIN_temp    DECIMAL(5,2),
-    L_O_MAX_temp    DECIMAL(5,2),
-};
+    L_O_MAX_temp    DECIMAL(5,2)
+);
 
-
-CREATE TABLE CountryTemperature{
+-- Create Country temperature table
+CREATE TABLE CountryTemperature(
     ctry_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     country_code      VARCHAR(3) NOT NULL,
     year              INTEGER NOT NULL,
     AVG_temp              DECIMAL(5,2),
     MIN_temp              DECIMAL(5,2),
     MAX_temp              DECIMAL(5,2),
-    FOREIGN KEY (country_code) REFERENCES Country(country_code),
-};
+    FOREIGN KEY (country_code) REFERENCES Country(country_code)
+);
 
-CREATE TABLE StateTemperature{
+-- Create State temperature table 
+CREATE TABLE StateTemperature(
     state_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    country_code     VARCHAR(3) NOT NULL,
     state_code      VARCHAR(3) NOT NULL,
     year              INTEGER NOT NULL,
     AVG_temp              DECIMAL(5,2),
     MIN_temp              DECIMAL(5,2),
     MAX_temp              DECIMAL(5,2),
-    FOREIGN KEY (state_code) REFERENCES State(state_code),
-};
+    FOREIGN KEY (country_code) REFERENCES Country(country_code)
+);
 
-CREATE TABLE CityTemperature{
+-- Create City temperature table
+CREATE TABLE CityTemperature(
     city_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    country_code     VARCHAR(3) NOT NULL,
     city_code      VARCHAR(3) NOT NULL,
     year              INTEGER NOT NULL,
     AVG_temp              DECIMAL(5,2),
     MIN_temp              DECIMAL(5,2),
     MAX_temp              DECIMAL(5,2),
-    FOREIGN KEY (city_code) REFERENCES City(city_code),
-}; 
+    FOREIGN KEY (country_code) REFERENCES Country(country_code)
+); 
