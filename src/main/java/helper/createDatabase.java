@@ -20,7 +20,6 @@ public class createDatabase {
             ScriptRunner scriptRunner = new ScriptRunner(connection);
 
             // Set the script file path
-            ClassLoader classLoader = database.class.getClassLoader();
             String scriptFilePath = "src/main/resources/climatetable.sql";
 
             // Run the SQL script file
