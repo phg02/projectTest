@@ -12,7 +12,7 @@ public class Country {
     static void countryTable() {
         try (Connection connection = DriverManager.getConnection(database.DATABASE)) {
             // add table name, column name
-            String query = "INSERT INTO WorldTemperature (country_name, country_code) VALUES (?, ?)";
+            String query = "INSERT INTO Country (country_name, country_code) VALUES (?, ?)";
             // name your statement
             PreparedStatement statement = connection.prepareStatement(query);
 
