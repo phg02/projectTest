@@ -24,7 +24,8 @@ public class population {
 
             while ((line = reader.readMap()) != null) {
                 for (int year = 1960; year <= 2013; year++) {
-                    statement.setString(1, "WLD");
+                    String countrycode = line.get("Country Code");
+                    statement.setString(1, countrycode);
                     String population = line.get(Integer.toString(year));
                     statement.setInt(2, year);
                     if (population.isEmpty()) {
