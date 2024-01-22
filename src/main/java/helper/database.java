@@ -7,6 +7,7 @@ public class database {
     public static void main(String[] args) {
         createDatabase.create();
         Country.countryTable();
+        population.PopulationTable();
         System.out.println("Database created successfully!");
     }
 }

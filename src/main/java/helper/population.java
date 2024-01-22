@@ -7,7 +7,7 @@ import com.opencsv.*;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class population {
-    private static final String CSV_FILE = "Population.csv";
+    private static final String CSV_FILE = "database/Population.csv";
 
     static void PopulationTable() {
         try (Connection connection = DriverManager.getConnection(database.DATABASE)) {
@@ -20,11 +20,24 @@ public class population {
             CSVReaderHeaderAware reader = new CSVReaderHeaderAware(new FileReader(CSV_FILE));
             // create Map object
             Map<String, String> line;
+            int count = 0;
 
             while ((line = reader.readMap()) != null) {
                 for (int year = 1960; year <= 2013; year++) {
+                    statement.setString(1, "WLD");
+                    String population = line.get(Integer.toString(year));
+                    statement.setInt(2, year);
+                    if (population.isEmpty()) {
+                        statement.setObject(3, null);
+                    } else {
+                        statement.setLong(3, Long.parseLong(population));
+                    }
+                    statement.executeUpdate();
+                    ++count;
+                    System.out.println(statement);
 
                 }
+                System.out.println("Inserted " + count);
             }
             connection.close();
 

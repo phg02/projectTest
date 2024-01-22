@@ -20,10 +20,12 @@ public class Country {
             CSVReaderHeaderAware reader = new CSVReaderHeaderAware(new FileReader(CSV_FILE));
             // create Map object
             Map<String, String> line;
+            int count = 0;
 
             while ((line = reader.readMap()) != null) {
-                String country_name = line.get("country_name");
-                String country_code = line.get("country_code");
+                String country_name = line.get("Country Name");
+                String country_code = line.get("Country Code");
+                System.out.println("Inserting " + country_name + " " + country_code + " into Country table...");
                 statement.setString(1, country_name);
                 // remember to check null value by if statement
                 // if (amount != null && !amount.isEmpty()) {
@@ -34,7 +36,9 @@ public class Country {
                 statement.setString(2, country_code);
                 statement.executeUpdate();
                 // insert count++ if you want to count how many rows are inserted
+                ++count;
             }
+            System.out.println("Inserted " + count);
             connection.close();
 
         } catch (SQLException | IOException | CsvValidationException e) {
