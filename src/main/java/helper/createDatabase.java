@@ -1,6 +1,5 @@
 package helper;
 
-import java.io.File;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,8 +21,7 @@ public class createDatabase {
 
             // Set the script file path
             ClassLoader classLoader = database.class.getClassLoader();
-            File file = new File(classLoader.getResource("climatetable.sql").getFile());
-            String scriptFilePath = file.getAbsolutePath();
+            String scriptFilePath = "src/main/resources/climatetable.sql";
 
             // Run the SQL script file
             scriptRunner.runScript(new FileReader(scriptFilePath));
