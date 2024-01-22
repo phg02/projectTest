@@ -41,13 +41,20 @@
          <artifactId>sqlite-jdbc</artifactId>
          <version>3.40.1.0</version>
       </dependency>
-
+   
       <!-- OpenCSV Dependency -->
       <dependency>
          <groupId>com.opencsv</groupId>
          <artifactId>opencsv</artifactId>
          <version>5.5.2</version>
       </dependency>
+      
+      <dependency>
+         <groupId>org.apache.ibatis</groupId>
+         <artifactId>ibatis-core</artifactId>
+         <version>3.0</version>
+      </dependency>
+      
    </dependencies>
 
    <build>
