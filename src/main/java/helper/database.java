@@ -5,11 +5,11 @@ public class database {
     protected static final String DATABASE = "jdbc:sqlite:database/ClimateDB.db";
 
     public static void main(String[] args) {
-        //createDatabase.create();
-        //Country.countryTable();
-        //population.PopulationTable();
-        //CountryTemp.CountryTempTable();
-        //WorldTemperature.WorldTemperatureTable();
+        createDatabase.create();
+        Country.countryTable();
+        population.PopulationTable();
+        CountryTemp.CountryTempTable();
+        WorldTemperature.WorldTemperatureTable();
         State.StateTable();
         System.out.println("Database created successfully!");
     }

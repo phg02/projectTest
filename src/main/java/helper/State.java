@@ -19,8 +19,7 @@ public class State {
             int count = 0;
 
             while ((line = reader.readMap())!= null) {
-                for (int year = 1960; year <= 2013; year++) {
-                String year1 = line.get("Year");
+                String year = line.get("Year");
 
                 String averageTemperature = line.get("AverageTemperature");
                 
@@ -28,39 +27,42 @@ public class State {
                 
                 String maximumTemperature = line.get("MaximumTemperature");
                 
-                String state = line.get("state_name");
+                String state = line.get("State");
                 //String country = line.get("country_code");
+                System.out.println("Inserting " + year + " " + averageTemperature + " " + minimumTemperature + " " + maximumTemperature + " " + state + " into State table...");
+                ++count;
+                statement.setString(1, year);
                 if (averageTemperature != null && !averageTemperature.isEmpty()) {
                     statement.setDouble(2, Double.parseDouble(averageTemperature));
                 } else {
                     statement.setObject(2, null);
                 }
+                
                 if (minimumTemperature != null && !minimumTemperature.isEmpty()) {
                     statement.setDouble(3, Double.parseDouble(minimumTemperature));
                 } else {
                     statement.setObject(3, null);
                 }
+                
                 if (maximumTemperature != null && !maximumTemperature.isEmpty()) {
                     statement.setDouble(4, Double.parseDouble(maximumTemperature));
                 } else {
                     statement.setObject(4, null);
                 }
-                System.out.println("Inserting " + year + " " + averageTemperature + " " + minimumTemperature + " " + maximumTemperature + " " + state + " " + "country" + " into State table...");
-                statement.setString(1, year1);
                 //statement.setString(2, averageTemperature);
                 //statement.setString(3, minimumTemperature);
                 //statement.setString(4, maximumTemperature);
                 if (state != null && !state.isEmpty()) {
                     statement.setString(5, state);
                 } else {
-                    System.out.println("State is null or empty, cannot insert into database");
+                    statement.setObject(5, null);
                     continue;
                 }
                 statement.setString(6, "WRD");
                 statement.executeUpdate();
-                ++count;
-                System.out.println(statement);
-                }
+                
+                
+                
             }
             System.out.println("Inserted " + count);
             connection.close();
