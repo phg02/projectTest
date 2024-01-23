@@ -10,6 +10,7 @@ public class database {
         population.PopulationTable();
         CountryTemp.CountryTempTable();
         WorldTemperature.WorldTemperatureTable();
+        State.StateTable();
         System.out.println("Database created successfully!");
     }
 }

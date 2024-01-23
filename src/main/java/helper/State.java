@@ -21,9 +21,13 @@ public class State {
             while ((line = reader.readMap())!= null) {
                 for (int year = 1960; year <= 2013; year++) {
                 String year1 = line.get("Year");
-                String averageTemperature = line.get("AVG_temp");
-                String minimumTemperature = line.get("Min_temp");
-                String maximumTemperature = line.get("Max_temp");
+
+                String averageTemperature = line.get("AverageTemperature");
+                
+                String minimumTemperature = line.get("MinimumTemperature");
+                
+                String maximumTemperature = line.get("MaximumTemperature");
+                
                 String state = line.get("state_name");
                 //String country = line.get("country_code");
                 if (averageTemperature != null && !averageTemperature.isEmpty()) {
