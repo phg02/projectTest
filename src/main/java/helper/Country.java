@@ -50,7 +50,7 @@ public class Country {
     public static Map<String, String> Country_data() {
         Map<String, String> countryData = new HashMap<String, String>();
         try (Connection connection = DriverManager.getConnection(database.DATABASE)) {
-            //Create a statement
+            // Create a statement
             Statement statement = connection.createStatement();
 
             // Execute the query to fetch country data
@@ -59,14 +59,14 @@ public class Country {
 
             // Iterate over the result set and populate the map
             while (resultSet.next()) {
-            String countryName = resultSet.getString("country_name");
-            String countryCode = resultSet.getString("country_codes");
-            countryData.put(countryName, countryCode);
-        }  
-        // Close the result set, statement, and connection
-        resultSet.close();
-        statement.close();
-        connection.close();      
+                String countryName = resultSet.getString("country_name");
+                String countryCode = resultSet.getString("country_codes");
+                countryData.put(countryName, countryCode);
+            }
+            // Close the result set, statement, and connection
+            resultSet.close();
+            statement.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
