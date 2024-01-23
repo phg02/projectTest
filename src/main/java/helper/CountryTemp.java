@@ -51,6 +51,8 @@ public class CountryTemp {
                 } else {
                     statement.setObject(5, null);
                 }
+                System.out.println(
+                        "Inserting " + countryCode + ", " + year + ", " + avgTemp + ", " + minTemp + ", " + maxTemp);
                 statement.executeUpdate();
                 // insert count++ if you want to count how many rows are inserted
                 ++count;
