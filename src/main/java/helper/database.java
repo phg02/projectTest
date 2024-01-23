@@ -6,10 +6,10 @@ public class database {
 
     public static void main(String[] args) {
         createDatabase.create();
-        // Country.countryTable();
-        // population.PopulationTable();
+        Country.countryTable();
+        population.PopulationTable();
         CountryTemp.CountryTempTable();
-        // WorldTemperature.WorldTemperatureTable();
+        WorldTemperature.WorldTemperatureTable();
         System.out.println("Database created successfully!");
     }
 }
