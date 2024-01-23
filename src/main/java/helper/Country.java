@@ -2,6 +2,7 @@ package helper;
 
 import java.io.*;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.Map;
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvValidationException;
@@ -44,5 +45,31 @@ public class Country {
         } catch (SQLException | IOException | CsvValidationException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Map<String, String> country_Dict() {
+        Map<String, String> countryDict = new HashMap<String, String>();
+        try (Connection connection = DriverManager.getConnection(database.DATABASE)) {
+            //Create a statement
+            Statement statement = connection.createStatement();
+
+            // Execute the query to fetch country data
+            String getAllCountry = "SELECT country_name, country_code FROM Country";
+            ResultSet resultSet = statement.executeQuery(getAllCountry);
+
+            // Iterate over the result set and populate the map
+            while (resultSet.next()) {
+            String countryCode = resultSet.getString("Country_code");
+            String countryName = resultSet.getString("Country");
+            countryDict.put(countryName, countryCode);
+        }  
+        // Close the result set, statement, and connection
+        resultSet.close();
+        statement.close();
+        connection.close();      
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countryDict;
     }
 }

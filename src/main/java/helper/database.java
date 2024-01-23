@@ -1,5 +1,8 @@
 package helper;
 
+import java.util.Map;
+import java.util.HashMap;
+
 public class database {
     // Name of database file (contained in database folder)
     protected static final String DATABASE = "jdbc:sqlite:database/ClimateDB.db";
