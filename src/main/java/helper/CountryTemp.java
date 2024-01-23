@@ -7,7 +7,7 @@ import com.opencsv.*;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class CountryTemp {
-    private static final String CSV_FILE = "/database/GlobalYearlyLandTempByCountry.csv";
+    private static final String CSV_FILE = "database/GlobalYearlyLandTempByCountry.csv";
 
     static void CountryTempTable() {
         try (Connection connection = DriverManager.getConnection(database.DATABASE)) {
@@ -25,25 +25,32 @@ public class CountryTemp {
             while ((line = reader.readMap()) != null) {
                 String countryCode = "USA"; // Need help here(method to get country code from country.csv)
 
-                String year = line.get("year");
+                String year = line.get("Year");
 
-                String avgTemp = line.get("AVG_temp");
+                String avgTemp = line.get("AverageTemperature");
 
-                String minTemp = line.get("MIN_temp");
+                String minTemp = line.get("MinimumTemperature");
 
-                String maxTemp = line.get("MAX_temp");
+                String maxTemp = line.get("MaximumTemperature");
 
                 statement.setString(1, countryCode);
-                // remember to check null value by if statement
-                // if (amount != null && !amount.isEmpty()) {
-                // preparedStatement.setLong(3, Long.parseLong(amount));
-                // } else{
-                // preparedStatement.setObject(3, null);
-                // }
                 statement.setString(2, year);
-                statement.setString(3, avgTemp);
-                statement.setString(4, minTemp);
-                statement.setString(5, maxTemp);
+                // remember to check null value by if statement
+                if (avgTemp != null && !avgTemp.isEmpty()) {
+                    statement.setDouble(3, Double.parseDouble(avgTemp));
+                } else {
+                    statement.setObject(3, null);
+                }
+                if (minTemp != null && !minTemp.isEmpty()) {
+                    statement.setDouble(4, Double.parseDouble(minTemp));
+                } else {
+                    statement.setObject(4, null);
+                }
+                if (maxTemp != null && !maxTemp.isEmpty()) {
+                    statement.setDouble(5, Double.parseDouble(maxTemp));
+                } else {
+                    statement.setObject(5, null);
+                }
                 statement.executeUpdate();
                 // insert count++ if you want to count how many rows are inserted
                 ++count;
