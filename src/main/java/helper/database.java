@@ -9,7 +9,7 @@ public class database {
         // Country.countryTable();
         // population.PopulationTable();
         CountryTemp.CountryTempTable();
-        WorldTemperature.WorldTemperatureTable();
+        // WorldTemperature.WorldTemperatureTable();
         System.out.println("Database created successfully!");
     }
 }
