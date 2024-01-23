@@ -2,7 +2,6 @@ package helper;
 
 import java.io.*;
 import java.sql.*;
-import java.util.HashMap;
 import java.util.Map;
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvValidationException;
@@ -26,13 +25,13 @@ public class CountryTemp {
             while ((line = reader.readMap()) != null) {
                 String countryCode = "USA"; // Need help here(method to get country code from country.csv)
 
-                String year = line.get("Year");
+                String year = line.get("year");
 
-                String avgTemp = line.get("AverageTemperature");
+                String avgTemp = line.get("AVG_temp");
 
-                String minTemp = line.get("MinTemperature");
+                String minTemp = line.get("MIN_temp");
 
-                String maxTemp = line.get("MaxTemperature");
+                String maxTemp = line.get("MAX_temp");
 
                 statement.setString(1, countryCode);
                 // remember to check null value by if statement

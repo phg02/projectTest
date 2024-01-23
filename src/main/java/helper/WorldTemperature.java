@@ -12,7 +12,7 @@ public class WorldTemperature {
     static void WorldTemperatureTable() {
         try (Connection connection = DriverManager.getConnection(database.DATABASE)) {
             // add table name, column name
-            String query = "INSERT INTO WorldTemperature (year, AVG_temp, MIN_temp, MAX_temp, L_O_AVG_temp, L_O_MIN_temp, L_O_MAX_temp) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO WorldTemperature (year, country_code, AVG_temp, MIN_temp, MAX_temp, L_O_AVG_temp, L_O_MIN_temp, L_O_MAX_temp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             // name your statement
             PreparedStatement statement = connection.prepareStatement(query);
 
@@ -20,56 +20,57 @@ public class WorldTemperature {
             CSVReaderHeaderAware reader = new CSVReaderHeaderAware(new FileReader(CSV_FILE));
             //Create a Map object 
             Map<String, String> line;
+            
             long count = 0;
             System.out.println("Inserting data into WorldTemperature table...");
             while ((line = reader.readMap()) != null) {
-                for (int year = 1960; year <= 2013; year++) {
-                    String YEAR = line.get(Integer.toString(year));
-                    String AvgTemp = line.get("AVG_temp");
-                    String MinTemp = line.get("MIN_temp");
-                    String MaxTemp = line.get("MAX_temp");
-                    String LOAvgTemp = line.get("L_O_AVG_temp");
-                    String LOMinTemp = line.get("L_O_MIN_temp");
-                    String LOMaxTemp = line.get("L_O_MAX_temp");
+                    String YEAR = line.get("Year");
+                    String CountryCode = "WLD";
+                    String AvgTemp = line.get("AverageTemperature");
+                    String MinTemp = line.get("MinimumTemperature");
+                    String MaxTemp = line.get("MaximumTemperature");
+                    String LOAvgTemp = line.get("LandOceanAverageTemperature");
+                    String LOMinTemp = line.get("LandOceanMinimumTemperature");
+                    String LOMaxTemp = line.get("LandOceanMaximumTemperature");
                     //Insert the data into the object
                     statement.setInt(1, Integer.parseInt(YEAR));
-                    statement.setDouble(2, Double.parseDouble(AvgTemp));
-                    statement.setDouble(3, Double.parseDouble(MinTemp));
-                    statement.setDouble(4, Double.parseDouble(MaxTemp));
+                    statement.setString(2, CountryCode);
+                    statement.setDouble(3, Double.parseDouble(AvgTemp));
+                    statement.setDouble(4, Double.parseDouble(MinTemp));
+                    statement.setDouble(5, Double.parseDouble(MaxTemp));
                     //Check if a data is a null value
                     //If it is a null value, then set it to NULL
                     //If not, then set the value to it.
                     if (LOAvgTemp != null && !LOAvgTemp.isEmpty()) {
-                        statement.setDouble(5, Double.parseDouble(LOAvgTemp));
-                    }
-                    else {
-                        statement.setObject(5, null);
-                    }
-                    if (LOMinTemp != null && !LOMinTemp.isEmpty()) {
-                        statement.setDouble(6, Double.parseDouble(LOMinTemp));
+                        statement.setDouble(6, Double.parseDouble(LOAvgTemp));
                     }
                     else {
                         statement.setObject(6, null);
                     }
-                    if (LOMaxTemp != null && !LOMaxTemp.isEmpty()) {
-                        statement.setDouble(7, Double.parseDouble(LOMaxTemp));
+                    if (LOMinTemp != null && !LOMinTemp.isEmpty()) {
+                        statement.setDouble(7, Double.parseDouble(LOMinTemp));
                     }
                     else {
-                        statement.setObject(7, LOMaxTemp);
+                        statement.setObject(7, null);
+                    }
+                    if (LOMaxTemp != null && !LOMaxTemp.isEmpty()) {
+                        statement.setDouble(8, Double.parseDouble(LOMaxTemp));
+                    }
+                    else {
+                        statement.setObject(8, null);
                     }
                     statement.executeUpdate();
                     count++;
                 }
+                System.out.println("Total insert: " + count);
+                connection.close();
             }
-            System.out.println("Total insert: " + count);
-            connection.close();
+            catch (SQLException | IOException ex) {
+                ex.printStackTrace();
+                } catch (CsvValidationException e) {
+                    e.printStackTrace();
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        catch (SQLException | IOException ex) {
-            ex.printStackTrace();
-            } catch (CsvValidationException e) {
-                e.printStackTrace();
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-    }
-}
