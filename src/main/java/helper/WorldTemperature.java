@@ -20,12 +20,13 @@ public class WorldTemperature {
             CSVReaderHeaderAware reader = new CSVReaderHeaderAware(new FileReader(CSV_FILE));
             // Create a Map object
             Map<String, String> line;
+            Map<String, String> country_data = Country.Country_data();
 
             long count = 0;
             System.out.println("Inserting data into WorldTemperature table...");
             while ((line = reader.readMap()) != null) {
                 String YEAR = line.get("Year");
-                String CountryCode = "WLD";
+                String CountryCode = country_data.get(line.get("Country"));
                 String AvgTemp = line.get("AverageTemperature");
                 String MinTemp = line.get("MinimumTemperature");
                 String MaxTemp = line.get("MaximumTemperature");

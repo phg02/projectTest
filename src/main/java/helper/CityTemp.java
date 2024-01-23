@@ -20,10 +20,11 @@ public class CityTemp {
             CSVReaderHeaderAware reader = new CSVReaderHeaderAware(new FileReader(CSV_FILE));
             // Create a Map object
             Map<String, String> line;
+            Map<String, String> country_data = Country.Country_data();
             long count = 0;
 
             while ((line = reader.readMap()) != null) {
-                String CountryCode = "VNM";
+                String CountryCode = country_data.get(line.get("Country"));
                 statement.setString(1, CountryCode);
                 String CityName = line.get("City");
                 statement.setString(2, CityName);

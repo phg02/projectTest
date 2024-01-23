@@ -16,6 +16,7 @@ public class State {
             CSVReaderHeaderAware reader = new CSVReaderHeaderAware(new FileReader(CSV_FILE));
             // create Map object
             Map<String, String> line;
+            Map<String, String> country_data = Country.Country_data();
             int count = 0;
 
             while ((line = reader.readMap())!= null) {
@@ -28,7 +29,10 @@ public class State {
                 String maximumTemperature = line.get("MaximumTemperature");
                 
                 String state = line.get("State");
+                
                 //String country = line.get("country_code");
+                String CountryCode = country_data.get(line.get("Country"));
+
                 System.out.println("Inserting " + year + " " + averageTemperature + " " + minimumTemperature + " " + maximumTemperature + " " + state + " into State table...");
                 ++count;
                 statement.setString(1, year);
@@ -58,7 +62,7 @@ public class State {
                     statement.setObject(5, null);
                     continue;
                 }
-                statement.setString(6, "WRD");
+                statement.setString(6, CountryCode);
                 statement.executeUpdate();
                 
                 
