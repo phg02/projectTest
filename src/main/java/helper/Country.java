@@ -47,8 +47,8 @@ public class Country {
         }
     }
 
-    public static Map<String, String> country_Dict() {
-        Map<String, String> countryDict = new HashMap<String, String>();
+    public static Map<String, String> Country_data() {
+        Map<String, String> countryData = new HashMap<String, String>();
         try (Connection connection = DriverManager.getConnection(database.DATABASE)) {
             //Create a statement
             Statement statement = connection.createStatement();
@@ -61,7 +61,7 @@ public class Country {
             while (resultSet.next()) {
             String countryName = resultSet.getString("country_name");
             String countryCode = resultSet.getString("country_codes");
-            countryDict.put(countryName, countryCode);
+            countryData.put(countryName, countryCode);
         }  
         // Close the result set, statement, and connection
         resultSet.close();
@@ -70,6 +70,6 @@ public class Country {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return countryDict;
+        return countryData;
     }
 }
