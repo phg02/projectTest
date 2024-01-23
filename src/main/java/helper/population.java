@@ -20,7 +20,7 @@ public class population {
             CSVReaderHeaderAware reader = new CSVReaderHeaderAware(new FileReader(CSV_FILE));
             // create Map object
             Map<String, String> line;
-            int count = 0;
+            long count = 0;
 
             while ((line = reader.readMap()) != null) {
                 for (int year = 1960; year <= 2013; year++) {
