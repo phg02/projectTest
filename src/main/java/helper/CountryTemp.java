@@ -8,7 +8,7 @@ import com.opencsv.*;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class CountryTemp {
-    private static final String CSV_FILE = "database/GlobalYearlyLandTempByCountry.csv";
+    private static final String CSV_FILE = "/database/GlobalYearlyLandTempByCountry.csv";
 
     static void CountryTempTable() {
         try (Connection connection = DriverManager.getConnection(database.DATABASE)) {
