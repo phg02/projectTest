@@ -50,7 +50,12 @@ public class State {
                 //statement.setString(2, averageTemperature);
                 //statement.setString(3, minimumTemperature);
                 //statement.setString(4, maximumTemperature);
-                statement.setString(5, state);
+                if (state != null && !state.isEmpty()) {
+                    statement.setString(5, state);
+                } else {
+                    System.out.println("State is null or empty, cannot insert into database");
+                    continue;
+                }
                 statement.setString(6, "WRD");
                 statement.executeUpdate();
                 ++count;
