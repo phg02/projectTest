@@ -26,6 +26,7 @@ CREATE TABLE Population(
 -- Create World Temperature table
 CREATE TABLE WorldTemperature(
     World_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    year              INTEGER NOT NULL,
     country_code      VARCHAR(3) NOT NULL,
     AVG_temp         DECIMAL(5,2),
     MAX_temp         DECIMAL(5,2),
