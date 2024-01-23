@@ -7,11 +7,11 @@ public class database {
     public static void main(String[] args) {
         createDatabase.create();
         Country.countryTable();
-        population.PopulationTable();
+        //population.PopulationTable();
         CountryTemp.CountryTempTable();
-        WorldTemperature.WorldTemperatureTable();
-        State.StateTable();
-        CityTemp.CityTempTable();
+        //WorldTemperature.WorldTemperatureTable();
+        //State.StateTable();
+        //CityTemp.CityTempTable();
         System.out.println("Database created successfully!");
     }
 }

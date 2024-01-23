@@ -19,11 +19,12 @@ public class CountryTemp {
             // create Map object
 
             Map<String, String> line;
+            Map<String, String> country_data = Country.Country_data();
 
             int count = 0;
 
             while ((line = reader.readMap()) != null) {
-                String countryCode = "USA"; // Need help here(method to get country code from country.csv)
+                String countryCode = country_data.get(line.get("Country")); // Need help here(method to get country code from country.csv)
 
                 String year = line.get("Year");
 

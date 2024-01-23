@@ -60,7 +60,7 @@ public class Country {
             // Iterate over the result set and populate the map
             while (resultSet.next()) {
                 String countryName = resultSet.getString("country_name");
-                String countryCode = resultSet.getString("country_codes");
+                String countryCode = resultSet.getString("country_code");
                 countryData.put(countryName, countryCode);
             }
             // Close the result set, statement, and connection
