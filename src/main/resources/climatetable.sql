@@ -52,7 +52,7 @@ CREATE TABLE CountryTemperature(
 CREATE TABLE StateTemperature(
     state_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     country_code     VARCHAR(3) NOT NULL,
-    state_name      VARCHAR(3) NOT NULL,
+    state_name      VARCHAR(25) NOT NULL,
     year              INTEGER NOT NULL,
     AVG_temp              DECIMAL(5,2),
     MIN_temp              DECIMAL(5,2),
@@ -64,7 +64,7 @@ CREATE TABLE StateTemperature(
 CREATE TABLE CityTemperature(
     city_temp_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     country_code     VARCHAR(3) NOT NULL,
-    city_code      VARCHAR(3) NOT NULL,
+    city_name      VARCHAR(25) NOT NULL,
     year              INTEGER NOT NULL,
     AVG_temp              DECIMAL(5,2),
     MIN_temp              DECIMAL(5,2),
