@@ -11,6 +11,7 @@ public class database {
         CountryTemp.CountryTempTable();
         WorldTemperature.WorldTemperatureTable();
         State.StateTable();
+        CityTemp.CityTempTable();
         System.out.println("Database created successfully!");
     }
 }
