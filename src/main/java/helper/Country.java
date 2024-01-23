@@ -59,8 +59,8 @@ public class Country {
 
             // Iterate over the result set and populate the map
             while (resultSet.next()) {
-            String countryCode = resultSet.getString("Country_code");
-            String countryName = resultSet.getString("Country");
+            String countryName = resultSet.getString("country_name");
+            String countryCode = resultSet.getString("country_codes");
             countryDict.put(countryName, countryCode);
         }  
         // Close the result set, statement, and connection
