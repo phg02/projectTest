@@ -24,7 +24,7 @@ public class CountryTemp {
             int count = 0;
 
             while ((line = reader.readMap()) != null) {
-                String countryCode = country_data.get(line.get("Country")); // Need help here(method to get country code from country.csv)
+                String countryCode = country_data.get(line.get("Country"));
 
                 String year = line.get("Year");
 
